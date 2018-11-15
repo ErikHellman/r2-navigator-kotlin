@@ -335,5 +335,9 @@ open class R2EpubActivity : AppCompatActivity(),PageCallback {
         //optional
     }
 
+    override fun message(text: String) {
+        //optional
+    }
+
 }
 

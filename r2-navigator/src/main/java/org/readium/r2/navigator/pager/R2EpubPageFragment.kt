@@ -82,6 +82,18 @@ class R2EpubPageFragment : Fragment() {
         webView.settings.displayZoomControls = false
         webView.setPadding(0, 0, 0, 0)
         webView.addJavascriptInterface(webView, "Android")
+        webView.setOnOverScrolledCallback(object : R2BasicWebView.OnOverScrolledCallback {
+            override fun onOverScrolled(scrollX: Int, scrollY: Int, clampedX: Boolean, clampedY: Boolean) {
+                if (clampedY)
+                    if (scrollY == 0) {
+                        webView.activity.message("top")
+                        //top
+                    } else {
+                        //bottom
+                        webView.activity.message("bottom")
+                    }
+            }
+        })
 
         webView.webViewClient = object : WebViewClient() {
             override fun shouldOverrideUrlLoading(view: WebView, request: WebResourceRequest): Boolean {

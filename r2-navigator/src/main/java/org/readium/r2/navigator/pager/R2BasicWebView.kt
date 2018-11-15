@@ -23,6 +23,32 @@ import org.readium.r2.shared.Locations
  */
 
 open class R2BasicWebView(context: Context, attrs: AttributeSet) : WebView(context, attrs) {
+    var callback: OnOverScrolledCallback? = null
+
+    interface OnOverScrolledCallback {
+        fun onOverScrolled(scrollX: Int, scrollY: Int, clampedX: Boolean, clampedY: Boolean)
+    }
+
+    fun setOnOverScrolledCallback(callback: OnOverScrolledCallback) {
+        this.callback = callback
+    }
+
+    override fun onOverScrolled(scrollX: Int, scrollY: Int, clampedX: Boolean, clampedY: Boolean) {
+        if (callback != null) {
+            callback?.onOverScrolled(scrollX, scrollY, clampedX, clampedY)
+        }
+        super.onOverScrolled(scrollX, scrollY, clampedX, clampedY)
+    }
+    
+//    var canScroll = true
+//    override fun onTouchEvent(event: MotionEvent): Boolean {
+//        if (canScroll) {
+//            requestDisallowInterceptTouchEvent(true)
+//            return super.onTouchEvent(event)
+//        } else {
+//            return false
+//        }
+//    }
 
     lateinit var activity: R2EpubActivity
     var progression: Double = 0.0
