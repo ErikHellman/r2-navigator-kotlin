@@ -56,7 +56,7 @@ class R2CbzActivity : AppCompatActivity() {
         resourcePager.adapter = adapter
 
         if (index == 0) {
-            if (ViewCompat.getLayoutDirection(this.contentView) == ViewCompat.LAYOUT_DIRECTION_RTL) {
+            if (this.contentView?.let { ViewCompat.getLayoutDirection(it) } == ViewCompat.LAYOUT_DIRECTION_RTL) {
                 // The view has RTL layout
                 resourcePager.currentItem = resources.size - 1
             } else {
@@ -88,7 +88,7 @@ class R2CbzActivity : AppCompatActivity() {
 
     fun nextResource(v: View? = null) {
         runOnUiThread {
-            if (ViewCompat.getLayoutDirection(this.contentView) == ViewCompat.LAYOUT_DIRECTION_RTL) {
+            if (this.contentView?.let { ViewCompat.getLayoutDirection(it) } == ViewCompat.LAYOUT_DIRECTION_RTL) {
                 // The view has RTL layout
                 resourcePager.currentItem = resourcePager.currentItem - 1
             } else {
@@ -100,7 +100,7 @@ class R2CbzActivity : AppCompatActivity() {
 
     fun previousResource(v: View? = null) {
         runOnUiThread {
-            if (ViewCompat.getLayoutDirection(this.contentView) == ViewCompat.LAYOUT_DIRECTION_RTL) {
+            if (this.contentView?.let { ViewCompat.getLayoutDirection(it) } == ViewCompat.LAYOUT_DIRECTION_RTL) {
                 // The view has RTL layout
                 resourcePager.currentItem = resourcePager.currentItem + 1
             } else {

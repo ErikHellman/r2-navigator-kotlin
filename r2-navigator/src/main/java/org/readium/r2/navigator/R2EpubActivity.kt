@@ -95,7 +95,7 @@ open class R2EpubActivity : AppCompatActivity() {
         userSettings.resourcePager = resourcePager
 
         if (index == 0) {
-            if (ViewCompat.getLayoutDirection(this.contentView) == ViewCompat.LAYOUT_DIRECTION_RTL) {
+            if (this.contentView?.let { ViewCompat.getLayoutDirection(it) } == ViewCompat.LAYOUT_DIRECTION_RTL) {
                 // The view has RTL layout
                 resourcePager.currentItem = resources.size - 1
             } else {
@@ -184,7 +184,7 @@ open class R2EpubActivity : AppCompatActivity() {
             pagerPosition = 0
             resourcePager.webView.progression = 0.0
 
-            if (ViewCompat.getLayoutDirection(this.contentView) == ViewCompat.LAYOUT_DIRECTION_RTL) {
+            if (this.contentView?.let { ViewCompat.getLayoutDirection(it) } == ViewCompat.LAYOUT_DIRECTION_RTL) {
                 // The view has RTL layout
                 resourcePager.currentItem = resourcePager.currentItem - 1
             } else {
@@ -200,7 +200,7 @@ open class R2EpubActivity : AppCompatActivity() {
             pagerPosition = 0
             resourcePager.webView.progression = 1.0
 
-            if (ViewCompat.getLayoutDirection(this.contentView) == ViewCompat.LAYOUT_DIRECTION_RTL) {
+            if (this.contentView?.let { ViewCompat.getLayoutDirection(it) } == ViewCompat.LAYOUT_DIRECTION_RTL) {
                 // The view has RTL layout
                 resourcePager.currentItem = resourcePager.currentItem + 1
             } else {
